@@ -43,6 +43,10 @@ CezarAlfabet: ArrayOfByte  = (65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77
 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 32, 44, 46, 140, 143, 163, 165, 175, 198,
 202, 209, 211);
 NazwaPliku = 'OD_Labo_4_TEKST_ANSI.txt';
+//NazwaPliku = 'test.txt';
+
+var
+CezarAlfabetLen : Integer;
 
 function znajdzIndeks(tablica: ArrayOfByte; znak: Byte) : Integer;
 var
@@ -62,7 +66,7 @@ var
   plikTekstowy    : File of Char;
   C : Char;
   tekst: String;
-  i, indeks, dlugoscPliku: Integer;
+  i, indeks, nowyIndeks, dlugoscPliku: Integer;
 begin
   AssignFile(plikTekstowy, NazwaPliku);
   Reset(plikTekstowy);
@@ -84,7 +88,11 @@ begin
    for i := 1 to dlugoscPliku do
     begin
       indeks := znajdzIndeks(CezarAlfabet,byte(tekst[i]));
-      C := Char(CezarAlfabet[(indeks+przesuniecie) Mod 37]);
+      nowyIndeks := indeks+przesuniecie;
+      if ( nowyIndeks >= 0) then
+         C := Char(CezarAlfabet[nowyIndeks Mod CezarAlfabetLen])
+      else
+         C := Char(CezarAlfabet[ CezarAlfabetLen + (nowyIndeks Mod CezarAlfabetLen)]);
       Write(plikTekstowy, C);
     end;
 
@@ -99,7 +107,7 @@ var
   plikTekstowy    : File of Char;
   C : Char;
   tekst: String;
-  i, indeks, dlugoscPliku: Integer;
+  i, indeks, nowyIndeks, dlugoscPliku: Integer;
 begin
   AssignFile(plikTekstowy, 'ZakodowanyCezar.txt');
   Reset(plikTekstowy);
@@ -121,7 +129,11 @@ begin
    for i := 1 to dlugoscPliku do
     begin
       indeks := znajdzIndeks(CezarAlfabet,byte(tekst[i]));
-      C := Char(CezarAlfabet[(indeks+przesuniecie) Mod 37]);
+      nowyIndeks := indeks+przesuniecie;
+      if ( nowyIndeks >= 0) then
+         C := Char(CezarAlfabet[nowyIndeks Mod CezarAlfabetLen])
+      else
+         C := Char(CezarAlfabet[ CezarAlfabetLen + (nowyIndeks Mod CezarAlfabetLen)]);
       Write(plikTekstowy, C);
     end;
 
@@ -156,7 +168,8 @@ procedure TForm1.FormCreate(Sender: TObject);
 var
 i: integer;
 begin
-     for i:=0 to 37 do
+  CezarAlfabetLen := Length(CezarAlfabet);
+     for i:=0 to CezarAlfabetLen do
      begin
        Memo1.Append(chr(CezarAlfabet[i]));
      end;
