@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 512
+  Left = 497
   Height = 615
-  Top = 174
+  Top = 172
   Width = 894
   Caption = 'Kryptografia - Mateusz Macheta 141147, 2020/21, wydzial techniki i informatyki, semestr V'
   ClientHeight = 615
@@ -14,7 +14,7 @@ object Form1: TForm1
     Height = 221
     Top = 380
     Width = 333
-    Caption = 'GroupBox1'
+    Caption = 'Szyfr Vigenere'
     ClientHeight = 196
     ClientWidth = 329
     TabOrder = 9
@@ -39,6 +39,15 @@ object Form1: TForm1
       ItemHeight = 20
       TabOrder = 0
     end
+    object Edit_przesuniecie1: TEdit
+      Left = 14
+      Height = 28
+      Top = 149
+      Width = 34
+      NumbersOnly = True
+      TabOrder = 1
+      Text = '0'
+    end
   end
   object Button1: TButton
     Left = 17
@@ -61,8 +70,8 @@ object Form1: TForm1
     Left = 17
     Height = 44
     Top = 75
-    Width = 127
-    Caption = 'Szyfruj Cezar'
+    Width = 125
+    Caption = '&Szyfruj Cezar'
     OnClick = Button_szyfrCezarClick
     TabOrder = 2
   end
@@ -70,8 +79,8 @@ object Form1: TForm1
     Left = 16
     Height = 49
     Top = 136
-    Width = 124
-    Caption = 'Deszyfruj Cezar'
+    Width = 126
+    Caption = '&Deszyfruj Cezar'
     OnClick = Button_deszyfrCezarClick
     TabOrder = 3
   end
@@ -79,8 +88,8 @@ object Form1: TForm1
     Left = 15
     Height = 45
     Top = 203
-    Width = 123
-    Caption = 'Zlam Cezar'
+    Width = 127
+    Caption = '&Zlam Cezar'
     OnClick = Button_zlamCezarClick
     TabOrder = 4
   end
@@ -89,7 +98,7 @@ object Form1: TForm1
     Height = 48
     Top = 264
     Width = 223
-    Caption = 'Szyfruj Zmodyfikowany Cezar'
+    Caption = 'S&zyfruj Zmodyfikowany Cezar'
     OnClick = Button_szyfModCezarClick
     TabOrder = 5
   end
@@ -97,25 +106,70 @@ object Form1: TForm1
     Left = 18
     Height = 46
     Top = 325
-    Width = 220
-    Caption = 'Deszyfruj Zmodyfikowany Cezar'
+    Width = 222
+    Caption = 'D&eszyfruj Zmodyfikowany Cezar'
     OnClick = Button_deszyfrCezarModClick
     TabOrder = 6
   end
-  object Button2: TButton
+  object Button_szyfrujVigenere: TButton
     Left = 18
     Height = 47
     Top = 408
     Width = 201
-    Caption = 'Szyfruj Vigenere'
+    Caption = 'Szyfruj &Vigenere'
+    OnClick = Button_szyfrujVigenereClick
     TabOrder = 7
   end
-  object Button3: TButton
+  object Button_deszyfrujVigenere: TButton
     Left = 18
     Height = 45
     Top = 464
     Width = 201
-    Caption = 'Deszyfruj Vigenere'
+    Caption = 'Deszyfruj V&igenere'
     TabOrder = 8
+  end
+  object Edit_przesuniecie2: TEdit
+    Left = 88
+    Height = 28
+    Top = 552
+    Width = 34
+    NumbersOnly = True
+    TabOrder = 10
+    Text = '0'
+  end
+  object Edit_przesuniecie3: TEdit
+    Left = 152
+    Height = 28
+    Top = 552
+    Width = 34
+    NumbersOnly = True
+    TabOrder = 11
+    Text = '0'
+  end
+  object Edit_przesuniecie4: TEdit
+    Left = 216
+    Height = 28
+    Top = 552
+    Width = 32
+    NumbersOnly = True
+    TabOrder = 12
+    Text = '0'
+  end
+  object Edit_przesuniecie5: TEdit
+    Left = 280
+    Height = 28
+    Top = 552
+    Width = 32
+    NumbersOnly = True
+    TabOrder = 13
+    Text = '0'
+  end
+  object Label2: TLabel
+    Left = 24
+    Height = 20
+    Top = 520
+    Width = 81
+    Caption = 'Przesuniecia'
+    ParentColor = False
   end
 end

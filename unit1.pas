@@ -15,18 +15,25 @@ type
 
   TForm1 = class(TForm)
     Button1: TButton;
-    Button2: TButton;
-    Button3: TButton;
+    Button_szyfrujVigenere: TButton;
+    Button_deszyfrujVigenere: TButton;
     Button_deszyfrCezarMod: TButton;
     Button_szyfModCezar: TButton;
     Button_zlamCezar: TButton;
     Button_deszyfrCezar: TButton;
     Button_szyfrCezar: TButton;
+    Edit_przesuniecie1: TEdit;
+    Edit_przesuniecie2: TEdit;
+    Edit_przesuniecie3: TEdit;
+    Edit_przesuniecie4: TEdit;
+    Edit_przesuniecie5: TEdit;
     GroupBox1: TGroupBox;
     Label1: TLabel;
+    Label2: TLabel;
     ListBox_iloscBlokow: TListBox;
     Memo1: TMemo;
     procedure Button1Click(Sender: TObject);
+    procedure Button_szyfrujVigenereClick(Sender: TObject);
     procedure Button_deszyfrCezarModClick(Sender: TObject);
     procedure Button_szyfModCezarClick(Sender: TObject);
     procedure Button_deszyfrCezarClick(Sender: TObject);
@@ -56,7 +63,7 @@ CezarAlfabet: ArrayOfByte  = (65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77
 202, 209, 211);
 NazwaPliku = 'OD_Labo_4_TEKST_ANSI.txt';
 NazwaPlikuMod = 'cezarZmodyfikowany.txt';
-NazwaPlikuVinegere='vinegere.txt';
+NazwaPlikuVinegere='vigenere.txt';
 
 var
 CezarAlfabetLen : Integer;
@@ -364,6 +371,71 @@ end;
 procedure TForm1.Button1Click(Sender: TObject);
 begin
   Application.MessageBox('Kryptografia - Mateusz Macheta 141147, 2020/21, wydzial techniki i informatyki, semestr V','Info',MB_OK);
+end;
+
+procedure TForm1.Button_szyfrujVigenereClick(Sender: TObject);
+var
+plikTekstowy    : File of Char;
+przesuniecia: Array of Integer;
+rozmiarBloku : Integer;
+C : Char;
+tekst: String;
+i, indeks, nowyIndeks, dlugoscPliku: integer;
+begin
+     rozmiarBloku:=StrToInt(ListBox_iloscBlokow.GetSelectedText);
+     SetLength(przesuniecia,rozmiarBloku);
+     case rozmiarBloku of
+           3: begin
+             przesuniecia[0] := StrToInt(Form1.Edit_przesuniecie1.Text);
+             przesuniecia[1] := StrToInt(Form1.Edit_przesuniecie2.Text);
+             przesuniecia[2] := StrToInt(Form1.Edit_przesuniecie3.Text);
+             end;
+           4: begin
+             przesuniecia[0] := StrToInt(Form1.Edit_przesuniecie1.Text);
+             przesuniecia[1] := StrToInt(Form1.Edit_przesuniecie2.Text);
+             przesuniecia[2] := StrToInt(Form1.Edit_przesuniecie3.Text);
+             przesuniecia[3] := StrToInt(Form1.Edit_przesuniecie4.Text);
+             end;
+           5: begin
+             przesuniecia[0] := StrToInt(Form1.Edit_przesuniecie1.Text);
+             przesuniecia[1] := StrToInt(Form1.Edit_przesuniecie2.Text);
+             przesuniecia[2] := StrToInt(Form1.Edit_przesuniecie3.Text);
+             przesuniecia[3] := StrToInt(Form1.Edit_przesuniecie4.Text);
+             przesuniecia[4] := StrToInt(Form1.Edit_przesuniecie5.Text);
+           end;
+     end;
+
+     AssignFile(plikTekstowy, NazwaPlikuVinegere);
+     Reset(plikTekstowy);
+     tekst := '';
+
+   while not eof(plikTekstowy)
+     do begin
+       read(plikTekstowy, C);
+       tekst := tekst + C;
+     end;
+
+   CloseFile(plikTekstowy);
+
+   dlugoscPliku := Length(tekst);
+
+   Assignfile(plikTekstowy, 'zaszyfrowanyVigenere.txt');
+   ReWrite(plikTekstowy);
+
+   for i := 1 to dlugoscPliku do
+    begin
+      indeks := znajdzIndeks(CezarAlfabet,byte(tekst[i]));
+      nowyIndeks := indeks+przesuniecia[(i Mod rozmiarBloku)-1];
+      if ( nowyIndeks >= 0) then
+         C := Char(CezarAlfabet[nowyIndeks Mod CezarAlfabetLen])
+      else
+         C := Char(CezarAlfabet[ CezarAlfabetLen + (nowyIndeks Mod CezarAlfabetLen)]);
+      Write(plikTekstowy, C);
+    end;
+
+   CloseFile(plikTekstowy);
+
+   Application.MessageBox('Plik został zaszyfrowany kodem Vigenere`a', 'Odszyfrowanie');
 end;
 
 procedure TForm1.Button_deszyfrCezarModClick(Sender: TObject);
