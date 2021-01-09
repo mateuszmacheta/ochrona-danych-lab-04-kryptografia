@@ -22,8 +22,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="333"/>
-        <CursorPos X="21" Y="342"/>
+        <TopLine Value="334"/>
+        <CursorPos Y="338"/>
         <UsageCount Value="46"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -171,15 +171,6 @@
     </RunParams>
   </ProjectSession>
   <Debugging>
-    <BreakPoints Count="1">
-      <Item1>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="unit1.pas"/>
-        <Line Value="338"/>
-      </Item1>
-    </BreakPoints>
     <Watches Count="10">
       <Item1>
         <Expression Value="przesuniecie"/>

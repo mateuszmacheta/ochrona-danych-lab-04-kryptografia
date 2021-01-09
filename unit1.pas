@@ -269,7 +269,7 @@ begin
 
    for i := 1 to dlugoscPliku do
     begin
-      indeks := znajdzIndeks(CezarAlfabet,byte(tekst[i]));
+      indeks := znajdzIndeks(NowyAlfabet,byte(tekst[i]));
       nowyIndeks := indeks+przesuniecie;
       if ( nowyIndeks >= 0) then
          C := Char(NowyAlfabet[nowyIndeks Mod CezarAlfabetLen])
@@ -340,7 +340,7 @@ begin
 
    for i := 1 to dlugoscPliku do
     begin
-      indeks := znajdzIndeks(CezarAlfabet,byte(tekst[i]));
+      indeks := znajdzIndeks(NowyAlfabet,byte(tekst[i]));
       nowyIndeks := indeks+przesuniecie;
       if ( nowyIndeks >= 0) then
          C := Char(NowyAlfabet[nowyIndeks Mod CezarAlfabetLen])
