@@ -6,7 +6,8 @@ unit Unit1;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, LCLType;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, LCLType,
+  Menus;
 
 type
 
@@ -14,11 +15,16 @@ type
 
   TForm1 = class(TForm)
     Button1: TButton;
+    Button2: TButton;
+    Button3: TButton;
     Button_deszyfrCezarMod: TButton;
     Button_szyfModCezar: TButton;
     Button_zlamCezar: TButton;
     Button_deszyfrCezar: TButton;
     Button_szyfrCezar: TButton;
+    GroupBox1: TGroupBox;
+    Label1: TLabel;
+    ListBox_iloscBlokow: TListBox;
     Memo1: TMemo;
     procedure Button1Click(Sender: TObject);
     procedure Button_deszyfrCezarModClick(Sender: TObject);
@@ -50,7 +56,7 @@ CezarAlfabet: ArrayOfByte  = (65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77
 202, 209, 211);
 NazwaPliku = 'OD_Labo_4_TEKST_ANSI.txt';
 NazwaPlikuMod = 'cezarZmodyfikowany.txt';
-//NazwaPliku = 'test.txt';
+NazwaPlikuVinegere='vinegere.txt';
 
 var
 CezarAlfabetLen : Integer;
